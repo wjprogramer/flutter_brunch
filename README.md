@@ -1,16 +1,13 @@
 # flutter_brunch
 
-A new Flutter application.
+## Flutter Brunch 0725
 
-## Getting Started
+螢火蟲
 
-This project is a starting point for a Flutter application.
+<img src="screenshots/螢火蟲.gif">
 
-A few resources to get you started if this is your first Flutter project:
+[參考 3:28](https://www.youtube.com/watch?v=NbENLF6wDO0)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- 背景圖片(CC0 Public Domain)
+    <a href="https://www.publicdomainpictures.net/en/view-image.php?image=329989&picture=the-most-amazing-cave-tham-lod-cave"><img src="https://www.publicdomainpictures.net/pictures/330000/velka/the-most-amazing-cave-tham-lod-cave-maehongson-in-thailand-1588590757Stm.jpg"></a>
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
