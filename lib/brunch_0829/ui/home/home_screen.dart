@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brunch/brunch_0829/const.dart';
+import 'package:flutter_brunch/brunch_0829/ui/home/component/shimmer.dart';
 
 import 'component/introduction_widget.dart';
 
@@ -11,7 +12,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-
   AnimationController _controller;
 
   Animation<double> _opacityAnimation;
@@ -25,7 +25,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       duration: const Duration(milliseconds: 400),
     )
       ..addListener(() {
-        setState(() { });
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.dismissed) {
+        } else if (status == AnimationStatus.completed) {}
       });
 
     _opacityAnimation = Tween(begin: 1.0, end: 0.0).animate(_controller);
@@ -52,7 +56,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text('Flutter Brunch Challenge', style: TextStyle(color: Colors.white, fontSize: 40,),),
+              child: Center(
+                  child: Text(
+                'Flutter Brunch Challenge',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                ),
+              )),
             ),
             ListTile(
               leading: Icon(Icons.flag),
@@ -67,21 +78,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           child: Column(
             children: [
               GestureDetector(
-                onTap: () {
-                  _scaffoldKey.currentState.openDrawer();
-                  _controller.forward(from: 0.0);
-                },
-                child: Opacity(opacity: _opacityAnimation.value, child: IntroductionWidget())
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Text(
-                    'Challenges',
-                    style: TextStyle(color: Colors.cyanAccent, fontSize: 18),
-                  ),
-                ),
+                  onTap: () {
+                    _controller.forward(from: 0.0);
+                  },
+                  child: _introduction()),
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: _title('Challenges'),
               ),
               //  https://flutter.dev/docs/cookbook/design/drawer
               Container(
@@ -100,10 +103,102 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                 ),
               ),
+              SizedBox(height: 24,),
+              _openDrawerButton(),
+              SizedBox(height: 24,),
+              Container(
+                color: Colors.blue[400],
+                padding: const EdgeInsets.all(16.0),
+                child: Shimmer.fromColors(
+                  child: Text('Shimmer', style: TextStyle(fontSize: 30),),
+                  baseColor: Colors.black12,
+                  highlightColor: Colors.white,
+                  loop: 99,
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
   }
+
+  Widget _title(String text) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        text,
+        style: TextStyle(color: Colors.cyanAccent, fontSize: 18),
+      ),
+    );
+  }
+
+  Widget _introduction() {
+    var baseColor = Color(0xFF6A8EC5);
+    var highlightColor = Color(0xFF9db2d1);
+
+    return Container(
+      margin: const EdgeInsets.all(24),
+      child: Wrap(
+        children: [
+          _title('App Introduction'),
+          Container(
+            margin: const EdgeInsets.only(top: 18),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  baseColor,
+                  baseColor,
+                  highlightColor,
+                  baseColor,
+                  baseColor
+                ],
+                stops: [
+                  0.0,
+                  0.35 * _controller.value, //+ 0.65 * _controller.value,
+                  0.5  * _controller.value, //+ 0.5 * _controller.value,
+                  0.65 * _controller.value, //+ 0.35 * _controller.value,
+                  1.0
+                ],
+              ),
+            ),
+            child: Center(
+              child: Text(
+                '這是一個，用於展示 每次 Flutter Brunch 現場 小挑戰內容的 App。',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // region 08/29
+
+  Widget _openDrawerButton() {
+    return FlatButton(
+      onPressed: () {
+        _scaffoldKey.currentState.openDrawer();
+      },
+      shape: StadiumBorder(
+        side: BorderSide(
+          color: Colors.white,
+        ),
+      ),
+      child: Text(
+        'Open Drawer',
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+// endregion
 }
