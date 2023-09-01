@@ -351,6 +351,7 @@ class _FireFlyDemo5State extends State<FireFlyDemo5> with TickerProviderStateMix
     }
 
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
         child: ClipRect(
           child: Container(

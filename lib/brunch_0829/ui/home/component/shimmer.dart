@@ -218,7 +218,7 @@ class _ShimmerFilter extends RenderProxyBox {
   final ShimmerDirection _direction;
   late bool enabled;
   late double _percent;
-  late Rect _rect;
+  Rect? _rect;
 
   _ShimmerFilter(this._percent, this._direction, this._gradient, this.enabled)
       : _gradientPaint = Paint()..blendMode = BlendMode.srcIn;
@@ -267,6 +267,7 @@ class _ShimmerFilter extends RenderProxyBox {
       dy = 0.0;
       rect = Rect.fromLTWH(offset.dx - width, offset.dy, 3 * width, height);
     }
+
     if (_rect != rect) {
       _gradientPaint.shader = _gradient.createShader(rect);
       _rect = rect;
