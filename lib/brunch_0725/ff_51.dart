@@ -6,21 +6,21 @@ import 'pos.dart';
 
 class FF51 {
 
-  double w;
-  double h;
+  late double w;
+  late double h;
 
-  double fireflyX;
-  double fireflyY;
+  late double fireflyX;
+  late double fireflyY;
 
   // 螢火蟲移動相關
-  double maxMoveRangeX;
-  double minMoveX;
-  double maxMoveX;
-  double minMoveY;
-  double maxMoveY;
-  double targetX;
-  double moveVelX;
-  double moveVelY;
+  late double maxMoveRangeX;
+  late double minMoveX;
+  late double maxMoveX;
+  late double minMoveY;
+  late double maxMoveY;
+  double? targetX;
+  late double moveVelX;
+  late double moveVelY;
 
   FF51(this.w, this.h) {
     fireflyX = w * (1700 / 1920);
@@ -79,15 +79,15 @@ class FF51 {
     var rand = Random();
 
     if (targetX != null) {
-      if (fireflyX < targetX) {
+      if (fireflyX < targetX!) {
         fireflyX += moveVelX;
         fireflyY += moveVelY;
-      } else if (fireflyX > targetX) {
+      } else if (fireflyX > targetX!) {
         fireflyX -= moveVelX;
         fireflyY -= moveVelY;
       }
 
-      if (fireflyX < targetX + moveVelX && fireflyX > targetX - moveVelX) {
+      if (fireflyX < targetX! + moveVelX && fireflyX > targetX! - moveVelX) {
         targetX = null;
       }
 
@@ -95,7 +95,7 @@ class FF51 {
       if (rand.nextDouble() < 0.05) {
         targetX = rand.nextBool() ?  fireflyX - (maxMoveRangeX * rand.nextDouble()) : fireflyX + (maxMoveRangeX * rand.nextDouble());
 
-        if (targetX < minMoveX || targetX > maxMoveX) {
+        if (targetX! < minMoveX || targetX! > maxMoveX) {
           targetX = null;
         }
       }

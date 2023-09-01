@@ -12,9 +12,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
-  Animation<double> _opacityAnimation;
+  late Animation<double> _opacityAnimation;
 
   @override
   void initState() {
@@ -182,15 +182,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   // region 08/29
 
   Widget _openDrawerButton() {
-    return FlatButton(
+    return TextButton(
       onPressed: () {
-        _scaffoldKey.currentState.openDrawer();
+        _scaffoldKey.currentState?.openDrawer();
       },
-      shape: StadiumBorder(
-        side: BorderSide(
-          color: Colors.white,
-        ),
-      ),
+      // shape: StadiumBorder(
+      //   side: BorderSide(
+      //     color: Colors.white,
+      //   ),
+      // ),
       child: Text(
         'Open Drawer',
         style: TextStyle(

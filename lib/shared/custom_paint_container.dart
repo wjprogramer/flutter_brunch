@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 /// 傳入 [CustomPainter]
 class CustomPaintContainer extends StatelessWidget {
   final CustomPainter painter;
-  final Widget child;
+  final Widget? child;
 
   CustomPaintContainer({
-    @required this.painter,
+    required this.painter,
     this.child,
   });
 
@@ -30,14 +30,14 @@ typedef CanvasPaint = void Function(Canvas canvas, Size size);
 
 /// 傳入繪畫函數 [CanvasPaint]
 class CustomPaintContainer2 extends StatelessWidget {
-  final Widget child;
+  final Widget? child;
   final CanvasPaint canvasPaint;
   final double height;
   final double width;
-  final Color color;
+  final Color? color;
 
   CustomPaintContainer2({
-    @required this.canvasPaint,
+    required this.canvasPaint,
     this.child,
     this.height = 200,
     this.width = 200,

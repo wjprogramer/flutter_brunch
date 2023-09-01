@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-Widget button({Function onPressed, String text, Widget page, BuildContext context}) {
-  return FlatButton(
+Widget button({Function? onPressed, String? text, Widget? page, BuildContext? context}) {
+  return TextButton(
     onPressed: () {
       if (onPressed != null) {
         onPressed();
@@ -14,7 +14,7 @@ Widget button({Function onPressed, String text, Widget page, BuildContext contex
     },
     child: Align(
       alignment: Alignment.centerLeft,
-      child: Text(text)
+      child: Text(text ?? '')
     ),
   );
 }

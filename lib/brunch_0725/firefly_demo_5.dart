@@ -16,18 +16,18 @@ class FireFlyDemo5 extends StatefulWidget {
 
 class _FireFlyDemo5State extends State<FireFlyDemo5> with TickerProviderStateMixin {
 
-  FF51 ff51;
+  late FF51 ff51;
 
-  AnimationController controller;
-  Size size;
+  late AnimationController controller;
+  late Size size;
   bool isInit = false;
 
   Color color1 = Color(0xFF51D4FB);
 
-  List<_BgLine> bgLines;
-  List<_LineFirefly> fgLines;
-  List<_BgFireFly> bgFireflies;
-  List<FireFly5> fireflies;
+  late List<_BgLine> bgLines;
+  late List<_LineFirefly> fgLines;
+  late List<_BgFireFly> bgFireflies;
+  late List<FireFly5> fireflies;
 
   /// Background: Cave Wall
   _caveWall(double w, double h) {
@@ -524,13 +524,13 @@ class _FireFlyDemo5State extends State<FireFlyDemo5> with TickerProviderStateMix
 
 /// 螢火蟲
 class _BgFireFly {
-  double x;
-  double y;
+  late double x;
+  late double y;
 
-  double radius;
-  double frequency;
-  double theta;
-  double opacity;
+  late double radius;
+  late double frequency;
+  late double theta;
+  late double opacity;
 
   double luminousMaxFrequency = pi / 100;
   double luminousMinFrequency = pi / 300;
@@ -538,9 +538,9 @@ class _BgFireFly {
   Color color;
 
   _BgFireFly({
-    this.x,
-    this.y,
-    this.color,
+    required this.x,
+    required this.y,
+    required this.color,
   }) {
     var rand = Random();
 
@@ -580,8 +580,8 @@ class _BgLine {
   double height;
 
   _BgLine({
-    this.centerX,
-    this.height,
+    required this.centerX,
+    required this.height,
   });
 
   draw(Canvas canvas, Size size) {
@@ -609,19 +609,19 @@ class _BgLine {
 
 /// deprecated（來自 ff_2.dart 改自草的飄動）
 class _FgLine {
-  double centerX;
-  double lineLength;
+  late double centerX;
+  late double lineLength;
   double width = 2.0;
-  double bottom;
+  late double bottom;
 
   double shakingFrequency = pi / 1000;
   double maxShakingRate = 0.2;
 
-  double theta;
+  late double theta;
 
   _FgLine({
-    this.centerX,
-    this.lineLength,
+    required this.centerX,
+    required this.lineLength,
   }) {
     var rand = Random();
 
@@ -690,24 +690,24 @@ class _FgLine {
 ///
 /// 處於前景，單擺運動
 class _LineFirefly {
-  double centerX;
-  double lineLength;
+  late double centerX;
+  late double lineLength;
 
-  double originX;
-  double originY = 0;
-  double bobX;
-  double bobY;
+  late double originX;
+  late double originY = 0;
+  late double bobX;
+  late double bobY;
 
-  double angle;
-  double aVel = 0.0;
-  double aAcc = 0.0;
+  late double angle;
+  late double aVel = 0.0;
+  late double aAcc = 0.0;
 
-  double damping = 0.995;
+  late double damping = 0.995;
 
   /// [originX]、[lineLength]是經過轉化後的數字
   _LineFirefly({
-    this.originX,
-    this.lineLength,
+    required this.originX,
+    required this.lineLength,
   }) {
     var rand = Random();
 

@@ -9,7 +9,7 @@ enum _FireFlyType {
 
 /// 螢火蟲
 class FireFly5 {
-  double o1;
+  late double o1;
   double o2 = 0.0;
   double o3 = 0.0;
 
@@ -21,39 +21,39 @@ class FireFly5 {
   double o3Max2 = 10.0;
 
   // pos
-  double centerX;
-  double lineLength;
+  late double centerX;
+  late double lineLength;
 
-  double originX;
+  late double originX;
   double originY = 0;
-  double bobX;
-  double bobY;
+  late double bobX;
+  late double bobY;
 
   // 單擺運動 Pendulum
-  double frequency;
-  double theta;
+  late double frequency;
+  late double theta;
 
-  double angle;
+  late double angle;
   double aVel = 0.0;
   double aAcc = 0.0;
 
   double damping = 0.995;
 
   // type
-  _FireFlyType currentType;
-  _FireFlyType nextType;
+  late _FireFlyType currentType;
+  _FireFlyType? nextType;
 
   // type A、B
   int currTwinkCount = 0;
-  int targetTwinkCount;
+  late int targetTwinkCount;
 
   //
   double luminousMaxFrequency = pi / 50;
   double luminousMinFrequency = pi / 159;
 
   FireFly5({
-    this.originX,
-    this.lineLength,
+    required this.originX,
+    required this.lineLength,
   }) {
     var rand = Random();
 
